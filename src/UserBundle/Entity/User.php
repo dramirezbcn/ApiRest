@@ -7,12 +7,15 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="UserBundle\Entity\UserRepository")
+ *
+ * @Hateoas\Relation("self", href = "expr('/api/users/' ~ object.getName())")
  *
  * @ExclusionPolicy("all")
  */
@@ -40,7 +43,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
-     * @Expose
+     *
      */
     protected $createdAt;
 
